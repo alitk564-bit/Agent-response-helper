@@ -86,29 +86,13 @@
         ];
 
         const App = () => {
-            const [isAuthenticated, setIsAuthenticated] = React.useState(false);
+            const App = () => {
+    const [data, setData] = useState(() => {
+        if (window.INITIAL_DATA) return window.INITIAL_DATA;
+        const saved = localStorage.getItem('agent_helper_data');
+        return saved ? JSON.parse(saved) : [];
+    });
 
-            React.useEffect(() => {
-                const pass = prompt("Please enter the password:");
-                if (pass === "1234") { // <--- CHANGE YOUR PASSWORD HERE
-                    setIsAuthenticated(true);
-                } else {
-                    alert("Access Denied");
-                    window.location.reload();
-                }
-            }, []);
-
-            // 2. ADD THIS PROTECTION RULE
-            if (!isAuthenticated) {
-                return <div className="min-h-screen bg-slate-900 flex items-center justify-center text-white font-bold tracking-widest uppercase text-xs">Authenticating...</div>;
-            }
-
-            // --- LEAVE ALL YOUR ORIGINAL CODE BELOW THIS LINE ---
-            const [data, setData] = useState(() => {
-                if (window.INITIAL_DATA) return window.INITIAL_DATA;
-                const saved = localStorage.getItem('agent_helper_data');
-                return saved ? JSON.parse(saved) : [];
-            });
 
 if (!isAuthenticated) return <div className="bg-slate-900 min-h-screen"></div>;
             const [data, setData] = useState(() => {
@@ -458,6 +442,7 @@ if (!isAuthenticated) return <div className="bg-slate-900 min-h-screen"></div>;
     </script>
 </body>
 </html>
+
 
 
 
