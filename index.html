@@ -86,6 +86,19 @@
         ];
 
         const App = () => {
+            const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+useEffect(() => {
+    const pass = prompt("Please enter the password to access Response Hub:");
+    if (pass === "YOUR_PASSWORD_HERE") { // Set your password here
+        setIsAuthenticated(true);
+    } else {
+        alert("Incorrect password.");
+        window.location.reload();
+    }
+}, []);
+
+if (!isAuthenticated) return <div className="bg-slate-900 min-h-screen"></div>;
             const [data, setData] = useState(() => {
                 if (window.INITIAL_DATA) return window.INITIAL_DATA;
                 const saved = localStorage.getItem('agent_helper_data');
@@ -433,3 +446,4 @@
     </script>
 </body>
 </html>
+
